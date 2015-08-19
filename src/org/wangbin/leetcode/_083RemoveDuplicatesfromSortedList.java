@@ -21,6 +21,7 @@ public class _083RemoveDuplicatesfromSortedList {
 		ListNode n1 = new ListNode(1, n2);
 		System.out.println(new _083RemoveDuplicatesfromSortedList()
 				.deleteDuplicates2(n1));
+		System.out.println(System.currentTimeMillis());
 	}
 
 	/**
