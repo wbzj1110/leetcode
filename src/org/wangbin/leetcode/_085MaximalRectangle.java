@@ -8,7 +8,7 @@ import java.util.Stack;
  * 这题目有_084LargestRectangleinHistogram这个的铺垫就简单多了
  * 
  * @author wb
- * @date 2015-8-18 下午8:19:49
+ * @date 2015-8-18 下午9:19:49
  */
 public class _085MaximalRectangle {
 	/**
