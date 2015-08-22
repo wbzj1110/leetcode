@@ -63,6 +63,12 @@ public class Util {
 		}
 		System.out.println("~~~~end~~~");
 	}
+	public static void showList(List<Integer> list){
+		for(Integer ob :list){
+			System.out.print(ob + "  ");
+		}
+		System.out.println("~~~end~~~");
+	}
 	public static void main(String[] args) {
 		System.out.println(md5Digest("22118988031882430803FFF1280168603abdvcdfgnnghDDX".getBytes()));
         System.out.println(md5Digest("44567003227367176950FFF1280168603abdvcdfgnnghDDD".getBytes()));
