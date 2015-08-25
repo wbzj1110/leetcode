@@ -1,5 +1,6 @@
 package org.wangbin.test;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class tets1 {
@@ -12,7 +13,34 @@ public class tets1 {
 		String url_long = "http://gongyi.weibo.com/r/213509?from_uid=123456789?from_uid=123456";
 		String temp2 = enSureUrlLegalAndSaveParams(url_long,appendStr);
 		System.out.println(temp2);
+		String str3 = null;
+		System.out.println("~~~~" + StringEscapeUtils.escapeHtml4(str3));
+		long id = 3870818041560873l;
+		id = id >> IDC_SEQ_BIT_LENGTH;
+		id = id + ID_OFFSET;
+		System.out.println(id +"");
+		long id2 = 1438358400l;
+		id2 -= ID_OFFSET;
+		id2 = id2<<IDC_SEQ_BIT_LENGTH;
+		System.out.println("2014.08.01 :  " + id2 +"");
+		
+		id2 = 1439136000l;
+        id2 -= ID_OFFSET;
+        id2 = id2<<IDC_SEQ_BIT_LENGTH;
+        System.out.println("2014.08.10 :  " + id2 +"");
+		
+		
+		
+		id = id2;
+        id = id >> IDC_SEQ_BIT_LENGTH;
+        id = id + ID_OFFSET;
+        System.out.println(id +"");
+		
 	}
+	public static final long ID_OFFSET = 515483463;
+	public static final long SEQ_BIT_LENGTH = 18;
+    public static final long IDC_SEQ_BIT_LENGTH = 4 + SEQ_BIT_LENGTH;
+    
 	private static String patternSmall = "=[0-9A-Za-z]*";
     private static String enSureUrlLegalAndSaveParams(String url_long, String appendStr) {
         // TODO Auto-generated method stub
