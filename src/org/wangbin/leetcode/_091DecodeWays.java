@@ -17,13 +17,13 @@ import java.util.Set;
  * @author wb
  * @date 2015-8-27 ионГ8:10:38
  */
-public class _090DecodeWays {
+public class _091DecodeWays {
     public static void main(String[] args) {
         String str = "123";
         char c = '1';
 //        System.out.println(c);
 //        System.out.println((int)c);
-        System.out.println(new _090DecodeWays().numDecodings(str));
+        System.out.println(new _091DecodeWays().numDecodings(str));
         str="1023";
 //        System.out.println(new _090DecodeWays().numDecodings2(str));
     }
