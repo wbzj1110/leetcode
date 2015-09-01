@@ -35,6 +35,16 @@ public class tets1 {
         id = id >> IDC_SEQ_BIT_LENGTH;
         id = id + ID_OFFSET;
         System.out.println(id +"");
+        
+        
+        
+        
+        
+        String special = "rsync -av 10.77.113.146::wangbin/att_timeline_"+"##@##" +"/status_att_1408.txt ./att_timeline_"+"##@##"+"/";
+        for(int i= 0;i <4;i++){
+            System.out.println(special.replaceAll("##@##", i+""));
+        }
+        
 		
 	}
 	public static final long ID_OFFSET = 515483463;

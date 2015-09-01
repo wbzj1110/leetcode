@@ -1,4 +1,4 @@
-package org.wangbin.test;
+package crc64;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,7 +30,7 @@ public class CRC64Algorithm {
      * @return
      */
     public static final long crc64Long(String in) {
-        if (StringUtils.isBlank(in)) {
+        if(in==null||in.length()==0||in.equals("")){
             return 0L;
         }
         return crc64Long(getBytes(in));
