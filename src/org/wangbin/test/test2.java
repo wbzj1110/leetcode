@@ -1,5 +1,7 @@
 package org.wangbin.test;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -45,8 +47,8 @@ public class test2 {
        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
        
-       uid = (long) 2133752617l;
-       id = (long) 3745661383138086l;
+       uid = (long) 1745307357l;
+       id = (long) 3749780490863353l;
        System.out.println("情况六：");
        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
@@ -64,17 +66,19 @@ public class test2 {
         
         System.out.println("~~~~");
        List<String> times = Lists.newArrayList();
-       times.add("3750142880514048");
-       times.add("3750142880514048");
-       times.add("3750142880514048");
+       times.add("3818996574978048");
+       times.add("3822620453634048");
+//       times.add("3797615690907648");
        for(String time:times){
            long unixTime  = getTimeFromId(time);
            String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(unixTime * 1000));
            System.out.println("查看最小时间 :  ~~" + date);
        }
+       
+       
     }
     
-    private static final int BLOOMFILTER_SAVE_DAYS = 400;//我们定的bloomfilter存储多少天的数据
+    private static final int BLOOMFILTER_SAVE_DAYS = 380;//我们定的bloomfilter存储多少天的数据
     private static final long ONE_DAY_TIME_SECONDS = 86400;//一天的秒数
     private static final long ALL_SECONDS_IN_BLOOMFILTER = BLOOMFILTER_SAVE_DAYS * ONE_DAY_TIME_SECONDS;//bf中存放的数据是距离现在多少秒之内的数据
    

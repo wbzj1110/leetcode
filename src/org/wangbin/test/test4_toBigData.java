@@ -5,6 +5,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 /**
  * 这个直接java编译执行
  * 作用是
@@ -24,12 +35,26 @@ public class test4_toBigData {
         // File.separator
         // + "status_att_1408.txt";
 //        
-         String str =
-         "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
-         File.separator
-         + "status_att_1409.txt";
-       doIt(str);
-       
+//         String str =
+//         "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
+//         File.separator
+//         + "status_att_1409.txt";
+//       doIt(str);
+//       
+        
+        
+        
+        
+        String str =
+                "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
+                File.separator
+                + "fixData20150902.txt";
+              findRedisException(str);
+              
+        
+        
+        
+        
 //       String str =
 //               "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
 //               File.separator
@@ -59,6 +84,79 @@ public class test4_toBigData {
 
 
     }
+    
+    private static boolean findRedisException(final String fileName) {
+        // TODO Auto-generated method stub
+        long count = 0;
+        int countInterval=5000;
+        List<String> ls = Lists.newArrayList();
+        int indexCounter = 0;
+        String str = "ptm##@##.eos.grid.sina.com.cn:##@##";
+        for(int i = 8812;i <=8827;i++){
+            ls.add(new String(str).replaceAll("##@##", i+""));
+        }
+        Set<String> sets = new HashSet<String>();
+        Set<String> sets2 = new HashSet<String>();
+        Map<String, String>maps = new HashMap<String, String>();
+        try {
+            final File file = new File(fileName);
+            if(file.isFile()){
+                BufferedInputStream fis = new BufferedInputStream(new FileInputStream(file));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fis, "utf-8"), 5 * 1024 * 1024);// 用5M的缓冲读取文本文件,不会占用过多的内存
+                String line = "";
+                
+                while((line = reader.readLine()) != null){  
+                    count++;
+                    //每隔countInterval行打记录
+//                    if(count%countInterval==0){
+//                        System.out.println("##@## ##@## ##@##LikesServiceImpl.setBloomFilterForFixData"+ fileName +" 导入第" 
+//                                + count + "行~~~此行的数据为" + line );
+//                    }
+                    if(maps.size()==16){
+                        break;
+                    }
+                   String temp = StringUtils.substringAfter(line, "redis server all dead: REDIS");
+                   if(StringUtils.isNotBlank(temp)){
+                       sets.add(temp);
+                       
+                   }
+                   String temp2 = new String(line);
+                   temp2 = StringUtils.substringBetween(temp2, "ptm", ".eos");
+                   if(temp2.equals("8814")){
+                       System.out.println("!!!!找到8814啦");
+                       Thread.sleep(50000);
+                   }
+                   if(StringUtils.isNotBlank(temp2)){
+                       sets2.add(temp2);
+                       
+                   }
+                    
+                    
+                }
+                
+                
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+            return false;
+        }finally{
+            System.out.println("文件扫描完毕~~行数：" + count);
+            System.out.println("最终结果展示 sets的大小为：" + sets.size());
+            for(String set:sets){
+                System.out.println(set);
+            }
+            System.out.println("最终结果展示 sets2的大小为：" + sets.size());
+            for(String set:sets2){
+                System.out.println(set);
+            }
+        }
+    }
+    
     private static boolean setBloomFilterForFixData(final String fileName) {
         // TODO Auto-generated method stub
         long count = 0;
