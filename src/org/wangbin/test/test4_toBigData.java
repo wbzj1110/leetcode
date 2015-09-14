@@ -34,22 +34,22 @@ public class test4_toBigData {
         // "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
         // File.separator
         // + "status_att_1408.txt";
-//        
-//         String str =
-//         "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
-//         File.separator
-//         + "status_att_1409.txt";
-//       doIt(str);
+        
+         String str =
+         "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
+         File.separator
+         + "wangbin_temp.txt";
+       doIt(str);
 //       
         
         
         
         
-        String str =
-                "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
-                File.separator
-                + "fixData20150902.txt";
-              findRedisException(str);
+//        String str =
+//                "C:" + File.separator + "Users" + File.separator + "wb" + File.separator + "Desktop" +
+//                File.separator
+//                + "fixData20150902.txt";
+//              findRedisException(str);
               
         
         
@@ -227,9 +227,9 @@ public class test4_toBigData {
                 if ((line = reader.readLine()) != null) {
                     try {
                         count++;
-                        if(true){
-                            continue;
-                        }
+//                        if(true){
+//                            continue;
+//                        }
                         if (count % 500000 == 0) {
                             System.out.println("数据校验中校验到第 " + count + " 行~~likes/wangbin/checkSortData,到目前为止，mid是顺序递增+ file" + file.getName());
                         }

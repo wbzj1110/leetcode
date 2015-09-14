@@ -19,38 +19,38 @@ public class test2 {
         String key = "";
         Long uid = (long) 1803626420l;
         Long id = (long) 3738779545298037l;
-        System.out.println("情况一：");
-        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
-        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
-        //记录的出错的第一个记录
-         uid = (long) 3091983213l;
-         id = (long) 3738788079451178l;
-         System.out.println("情况二：");
-         System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
-         System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
-        //也有个出错的记录
-         uid = (long) 5058695223l;
-         id = (long) 3880128227874834l;
-         System.out.println("情况三：");
-        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
-        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
-        //也有个出错的记录
-        uid = (long) 2727046555l;
-        id = (long) 3881656467222381l;
-        System.out.println("情况四：");
-       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
-       System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
-     //也有个出错的记录
-       uid = (long) 3790383711l;
-       id = (long) 3738546470771002l;
-       System.out.println("情况五：");
-       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
-       System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
-       
-       uid = (long) 1745307357l;
-       id = (long) 3749780490863353l;
+//        System.out.println("情况一：");
+//        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
+//        //记录的出错的第一个记录
+//         uid = (long) 3091983213l;
+//         id = (long) 3738788079451178l;
+//         System.out.println("情况二：");
+//         System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//         System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
+//        //也有个出错的记录
+//         uid = (long) 5058695223l;
+//         id = (long) 3880128227874834l;
+//         System.out.println("情况三：");
+//        System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
+//        //也有个出错的记录
+//        uid = (long) 2727046555l;
+//        id = (long) 3881656467222381l;
+//        System.out.println("情况四：");
+//       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//       System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
+//     //也有个出错的记录
+//       uid = (long) 3790383711l;
+//       id = (long) 3738546470771002l;
+//       System.out.println("情况五：");
+//       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//       System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
+//       
+       uid = (long) 2607718135l;
+       id = (long) 3661913085997764l;
        System.out.println("情况六：");
-       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
+//       System.out.println(" key :" + getBloomFilterKeyFromUidAndMid(uid, id));
        System.out.println(" key2:" + getBloomFilterKeyFromUidAndMid2(uid, id));
 //        key = getBloomFilterKeyFromUidAndMid(uid, id);
 //        Long max_diff = 2251799813685247l;
@@ -66,9 +66,9 @@ public class test2 {
         
         System.out.println("~~~~");
        List<String> times = Lists.newArrayList();
-       times.add("3818996574978048");
-       times.add("3822620453634048");
-//       times.add("3797615690907648");
+       times.add("3760652126647685");
+       times.add("3760652126647685");
+//       times.add("3872240233629331");
        for(String time:times){
            long unixTime  = getTimeFromId(time);
            String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(unixTime * 1000));
@@ -130,8 +130,9 @@ public class test2 {
                 return "";
             }
             //表示当前的mid距离我们规定的时间的天数（初步定为2014-08-25），转换为北京时间
+            System.out.println("~~~" + getLocalTime(getTimeFromId(mid)));
             long midDays = (getLocalTime(getTimeFromId(mid))- LIKES_EXISTS_BLOOMFILTER_SINCE) / ONE_DAY_TIME_SECONDS;
-            
+//            long midDays=10;
             String unionStr = new String(new StringBuilder(128).append(uid).append(mid));
             long crc64HashResult = CRC64Algorithm.crc64Long(unionStr);
             
@@ -159,7 +160,8 @@ public class test2 {
     private static boolean isMidInOneYear(long mid) {
         long currTime = System.currentTimeMillis()/1000;//unix时间戳精确到秒
         long midTime = getTimeFromId(mid);//从mid中拿到unix时间戳
-        if(Math.abs(currTime - midTime) < ALL_SECONDS_IN_BLOOMFILTER || getLocalTime(currTime) > BLOOMFILTER_NO_LIMIT_TIME){
+        System.out.println(getLocalTime(currTime));
+        if(Math.abs(currTime - midTime) < ALL_SECONDS_IN_BLOOMFILTER || getLocalTime(mid) > BLOOMFILTER_NO_LIMIT_TIME){
             return  true;
         }
         return false;
